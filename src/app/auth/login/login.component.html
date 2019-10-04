@@ -1,0 +1,47 @@
+<div class="row no-gutter" ng-controller="LoginController">
+  <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image">
+    <h1 class="logo">App <b>Supermercado</b></h1>
+  </div>
+  <div class="col-md-8 col-lg-6">
+    <div class="login d-flex align-items-center py-5">
+      <div class="container">
+        <div class="row d-block d-sm-block d-md-none">
+          <div class="col-md-12">
+            <h1 class="logo-movil">App <b>Supermercado</b></h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9 col-lg-8 mx-auto">
+            <h3 class="login-font mb-4 d-none d-sm-none d-md-block">Bienvenido!</h3>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <div class="form-label-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" formControlName="email" class="form-control" ng-model="login.email"
+                  placeholder="Correo electrónico" maxlength="150" autofocus [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">El email es requerido</div>
+                  <div *ngIf="f.email.errors.email">El email no es válido</div>
+                </div>
+              </div>
+
+              <div class="form-label-group">
+                <label for="pasword">Contraseña</label>
+                <input type="password" id="password" formControlName="password" class="form-control"
+                  ng-model="login.password" placeholder="Contraseña" maxlength="12" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">La constraseña es requerida</div>
+                </div>
+              </div>
+              <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
+                [disabled]="loading">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Iniciar sesión
+              </button>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
